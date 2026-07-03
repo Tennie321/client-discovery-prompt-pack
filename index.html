@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Discovery & Diagnosis Prompt Pack — AI Automation Agency Tools</title>
+    <meta name="description" content="15 battle-tested AI prompts in the D.I.S.C.O.V.E.R. framework. Close more AI automation clients with structured discovery calls that uncover hidden opportunities.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #e2e2e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 25%, #1a0a1a 50%, #0a0f1a 75%, #0a0a0f 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
+            animation: pulseGlow 8s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 400px; height: 400px;
+            background: rgba(99, 102, 241, 0.08);
+            top: -100px; left: -100px;
+            animation: float 15s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 350px; height: 350px;
+            background: rgba(168, 85, 247, 0.06);
+            bottom: -80px; right: -80px;
+            animation: float 18s ease-in-out infinite reverse;
+        }
+        .orb-3 {
+            width: 250px; height: 250px;
+            background: rgba(236, 72, 153, 0.04);
+            top: 50%; left: 60%;
+            animation: float 12s ease-in-out infinite 2s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, -30px); }
+            66% { transform: translate(-20px, 20px); }
+        }
+
+        /* Navigation */
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        nav .logo span { color: #818cf8; }
+        nav .nav-links { display: flex; gap: 2rem; align-items: center; }
+        nav .nav-links a { color: #a0a0b8; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        nav .nav-links a:hover { color: #818cf8; }
+        .btn-nav { background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 999px; font-weight: 600 !important; }
+
+        /* Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 999px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+            color: #818cf8;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #f0f0ff 0%, #818cf8 40%, #a855f7 70%, #e879f9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0a0b8;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        .hero .price-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 999px;
+            padding: 0.6rem 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .hero .price-tag .price { font-size: 2rem; font-weight: 800; color: #fff; }
+        .hero .price-tag .compare { color: #666; text-decoration: line-through; font-size: 1.2rem; }
+        .hero .price-tag .save { color: #4ade80; font-size: 0.85rem; font-weight: 600; }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: #fff;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 999px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            color: #e2e2e8;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 2.5rem;
+            border-radius: 999px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-left: 1rem;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        .hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+
+        /* Trust bar */
+        .trust-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .trust-bar p { color: #666; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .trust-bar .logos { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .trust-bar .logos span { color: #444; font-size: 0.9rem; font-weight: 600; }
+
+        /* Sections common */
+        section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #818cf8;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #f0f0ff;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            color: #a0a0b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* Framework section */
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        .framework-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .framework-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        .framework-card .phase-num {
+            display: inline-flex;
+            width: 36px; height: 36px;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.2));
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: #818cf8;
+            margin-bottom: 1rem;
+        }
+        .framework-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+        .framework-card p { font-size: 0.9rem; color: #a0a0b8; }
+        .framework-card .prompt-count {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #f0abfc;
+            font-weight: 500;
+        }
+
+        /* What's included */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .feature-card:hover { border-color: rgba(99, 102, 241, 0.3); }
+        .feature-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .feature-card h4 { color: #fff; font-size: 1rem; margin-bottom: 0.4rem; }
+        .feature-card p { color: #a0a0b8; font-size: 0.85rem; }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pricing-card.featured {
+            background: rgba(99, 102, 241, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: scale(1.03);
+        }
+        .pricing-card.featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 999px;
+            letter-spacing: 1px;
+        }
+        .pricing-card .plan-name { font-size: 1rem; color: #a0a0b8; font-weight: 600; margin-bottom: 0.5rem; }
+        .pricing-card .plan-price { font-size: 3rem; font-weight: 900; color: #fff; margin-bottom: 0.3rem; }
+        .pricing-card .plan-price span { font-size: 1rem; font-weight: 400; color: #666; }
+        .pricing-card .plan-desc { color: #a0a0b8; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .pricing-card ul { text-align: left; list-style: none; margin-bottom: 2rem; }
+        .pricing-card ul li { padding: 0.5rem 0; font-size: 0.85rem; color: #c0c0d0; display: flex; align-items: center; gap: 0.5rem; }
+        .pricing-card ul li::before { content: '✓'; color: #4ade80; font-weight: 700; }
+        .pricing-card .btn-pricing {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03);
+            color: #e2e2e8;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .pricing-card.featured .btn-pricing {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border: none;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        .pricing-card.featured .btn-pricing:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4); }
+
+        /* FAQ */
+        .faq-list { max-width: 750px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 1.2rem 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #e2e2e8;
+            font-size: 1rem;
+        }
+        .faq-question .toggle { font-size: 1.2rem; color: #818cf8; transition: transform 0.3s; }
+        .faq-item.open .faq-question .toggle { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #a0a0b8;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-top: 1rem;
+        }
+
+        /* Email capture */
+        .email-section {
+            background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(168,85,247,0.05));
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .email-section h2 { font-size: 1.8rem; color: #f0f0ff; margin-bottom: 0.8rem; }
+        .email-section p { color: #a0a0b8; margin-bottom: 2rem; }
+        .email-form {
+            display: flex;
+            gap: 0.8rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .email-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.9rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .email-form input:focus { border-color: #818cf8; }
+        .email-form input::placeholder { color: #666; }
+        .email-form button {
+            padding: 0.9rem 1.8rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .email-form button:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(99,102,241,0.4); }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        footer p { color: #666; font-size: 0.85rem; }
+        footer .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        footer .footer-links a { color: #a0a0b8; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        footer .footer-links a:hover { color: #818cf8; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            nav .nav-links { display: none; }
+            .pricing-card.featured { transform: none; }
+            .framework-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.7rem; }
+        }
+
+        /* Use cases section */
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .use-case-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 1.8rem;
+            text-align: center;
+        }
+        .use-case-card h4 { color: #fff; font-size: 1rem; margin-bottom: 0.5rem; }
+        .use-case-card p { color: #a0a0b8; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav>
+        <a href="#" class="logo">AI <span>Revenue Toolkit</span></a>
+        <div class="nav-links">
+            <a href="#framework">Framework</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#buy" class="btn-nav">Get It Now →</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-badge">🔥 15 Battle-Tested Prompts · D.I.S.C.O.V.E.R. Framework</div>
+        <h1>Close More AI Automation Clients<br>With Discovery Calls That Convert</h1>
+        <p>Stop losing deals to vague discovery calls. This prompt pack turns every call into a structured, ROI-driven conversation that uncovers hidden automation opportunities clients didn't know they had.</p>
+        <div class="price-tag">
+            <span class="price">$14</span>
+            <span class="compare">$37</span>
+            <span class="save">Save 62% in bundle</span>
+        </div>
+        <div class="hero-cta">
+            <a href="#buy" class="btn-primary">Buy Now — $14 ⚡</a>
+            <a href="#framework" class="btn-secondary">See the Framework ↓</a>
+        </div>
+    </div>
+
+    <div class="trust-bar">
+        <p>Used by AI automation agencies</p>
+        <div class="logos">
+            <span>NexusAI Partners</span>
+            <span>Automation Labs</span>
+            <span>Digital Ops Agency</span>
+            <span>AI Workflow Co.</span>
+            <span>SmartProcess Agency</span>
+        </div>
+    </div>
+
+    <section id="framework">
+        <div style="text-align:center;">
+            <div class="section-label">The Framework</div>
+            <h2 class="section-title">D.I.S.C.O.V.E.R. Methodology</h2>
+            <p class="section-subtitle" style="margin:0 auto 3rem;">A 5-phase discovery process that takes prospects from cold lead to signed deal in 14 days or less.</p>
+        </div>
+        <div class="framework-grid">
+            <div class="framework-card">
+                <div class="phase-num">01</div>
+                <h3>Qualification & Lead Scoring</h3>
+                <p>Pre-call research brief prompt + qualification matrix. Score every lead before you invest a minute of discovery time.</p>
+                <div class="prompt-count">3 prompts</div>
+            </div>
+            <div class="framework-card">
+                <div class="phase-num">02</div>
+                <h3>Discovery Call Scripting</h3>
+                <p>Interview scripts that uncover pain points using the 5 Whys technique. Convert feature requests into automation opportunities.</p>
+                <div class="prompt-count">4 prompts</div>
+            </div>
+            <div class="framework-card">
+                <div class="phase-num">03</div>
+                <h3>Pain Point Diagnosis & ROI</h3>
+                <p>Quantify the cost of inaction with industry benchmark data. Generate dollar-figure business cases that justify your retainer.</p>
+                <div class="prompt-count">3 prompts</div>
+            </div>
+            <div class="framework-card">
+                <div class="phase-num">04</div>
+                <h3>Solution Design & Proposal Framing</h3>
+                <p>Map automation solutions to exec priorities. Frame proposals around outcomes, not features — making "no" the harder choice.</p>
+                <div class="prompt-count">3 prompts</div>
+            </div>
+            <div class="framework-card">
+                <div class="phase-num">05</div>
+                <h3>Objection Handling & Closing</h3>
+                <p>Defeat the 5 most common objections with battle-tested responses. Automated follow-up sequence that converts stalled deals.</p>
+                <div class="prompt-count">2 prompts</div>
+            </div>
+            <div class="framework-card" style="border-color: rgba(99,102,241,0.2); background: rgba(99,102,241,0.03);">
+                <div class="phase-num" style="background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(168,85,247,0.3));">+</div>
+                <h3>Bonus: Battle Cards & Sequences</h3>
+                <p>Competitive battle card generator for discovery calls + automated 14-day follow-up sequence builder for stalled deals.</p>
+                <div class="prompt-count">2 bonus resources</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align:center;">
+                <div class="section-label">What You Get</div>
+                <h2 class="section-title">Everything You Need to Master Discovery</h2>
+                <p class="section-subtitle" style="margin:0 auto 3rem;">Copy-paste-ready prompts that work with Claude, ChatGPT, Gemini — any AI.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">📋</div>
+                    <h4>Pre-Call Research Brief</h4>
+                    <p>Research your prospect's business, industry, and competitors before every discovery call. Walk in prepared to close.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔍</div>
+                    <h4>5 Whys Pain Point Interview</h4>
+                    <p>Uncover root-cause problems, not surface-level requests. Turn every "we need a chatbot" into a $5K automation project.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h4>ROI Calculator Prompts</h4>
+                    <p>Generate dollar-figure business cases with industry benchmark data. Show the cost of inaction to justify your pricing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h4>Objection Response Generator</h4>
+                    <p>Battle-tested responses for "we already looked into AI", "our team can handle it", "it's too expensive", and 2 more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📝</div>
+                    <h4>Proposal Framing Prompts</h4>
+                    <p>Map your solution to executive priorities and avoid the "IT budget" trap. Frame proposals around outcomes, not features.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📅</div>
+                    <h4>14-Day Closing Sequence</h4>
+                    <p>Automated follow-up system that re-engages stalled deals with value-add touchpoints. Convert 2x more proposals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h4>Battle Card Generator</h4>
+                    <p>Generate competitive battle cards on the fly. Turn prospect objections into opportunities by positioning against status quo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎯</div>
+                    <h4>Printable Quick-Reference</h4>
+                    <p>Single-page usage guide showing ideal timing, prep time, AI customization, and output value for every prompt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div style="text-align:center;">
+            <div class="section-label">Pricing</div>
+            <h2 class="section-title">Invest in Your Close Rate</h2>
+            <p class="section-subtitle" style="margin:0 auto 3rem;">3-5x ROI on your first use. The cheapest way to improve your discovery process.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Individual</div>
+                <div class="plan-price">$14</div>
+                <div class="plan-desc">One-time purchase. Lifetime updates.</div>
+                <ul>
+                    <li>15 battle-tested prompts</li>
+                    <li>Complete D.I.S.C.O.V.E.R. framework</li>
+                    <li>Pre-call research brief prompt</li>
+                    <li>ROI calculator with benchmarks</li>
+                    <li>Printable quick-reference guide</li>
+                    <li>Lifetime product updates</li>
+                </ul>
+                <a href="#" class="btn-pricing">Buy $14 →</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-name">AI Revenue Bundle</div>
+                <div class="plan-price">$37 <span>$58</span></div>
+                <div class="plan-desc">36% off — 5 products bundled.</div>
+                <ul>
+                    <li>Client Discovery Prompt Pack</li>
+                    <li>Cold Email Swipe File PRO (60+ templates)</li>
+                    <li>Agency Proposal Builder (CLI tool)</li>
+                    <li>Email Quality Analyzer</li>
+                    <li>AI Automation ROI Calculator</li>
+                    <li><strong style="color:#4ade80;">All future products added free</strong></li>
+                </ul>
+                <a href="#" class="btn-pricing">Buy Bundle $37 →</a>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">White-Label / Agency</div>
+                <div class="plan-price">$7 <span>/unit</span></div>
+                <div class="plan-desc">Min 10 units. Your branding.</div>
+                <ul>
+                    <li>Rebrand as your own product</li>
+                    <li>Include in your client onboarding</li>
+                    <li>Give as ethical bribe to prospects</li>
+                    <li>Bulk pricing at 50+ units</li>
+                    <li>Custom branding options</li>
+                </ul>
+                <a href="#" class="btn-pricing">Contact for Access →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="use-cases" style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05); max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align:center;">
+                <div class="section-label">Who Is This For?</div>
+                <h2 class="section-title">Built for AI Automation Professionals</h2>
+                <p class="section-subtitle" style="margin:0 auto 3rem;">Whether you're a solo freelancer or running a 10-person agency.</p>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div style="font-size:2rem; margin-bottom:0.8rem;">🚀</div>
+                    <h4>Solo Freelancers</h4>
+                    <p>Close $2K–$5K automation projects without hiring a sales team. Structured discovery makes every call count.</p>
+                </div>
+                <div class="use-case-card">
+                    <div style="font-size:2rem; margin-bottom:0.8rem;">🏢</div>
+                    <h4>Small Agencies (2-10)</h4>
+                    <p>Standardize your sales process across the team. Train juniors to run discovery calls that close at 40%+ rates.</p>
+                </div>
+                <div class="use-case-card">
+                    <div style="font-size:2rem; margin-bottom:0.8rem;">💼</div>
+                    <h4>Sales Teams</h4>
+                    <p>Equip your closers with battle-tested scripts and objection handlers. Close $5K–$15K retainers consistently.</p>
+                </div>
+                <div class="use-case-card">
+                    <div style="font-size:2rem; margin-bottom:0.8rem;">🔄</div>
+                    <h4>Consultants Transitioning</h4>
+                    <p>Moving from SaaS consulting to AI automation? Use the prompts to position yourself as an expert on day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div style="text-align:center;">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item open">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    Which AI models do these prompts work with?
+                    <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">All of them. Claude, ChatGPT, Gemini, Mistral — the prompts are model-agnostic and copy-paste-ready. We test against Claude 3.5 Sonnet and GPT-4o specifically, but the framework works with any modern LLM.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    I already have a discovery process. Will this help?
+                    <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">If you're closing <40% of discovery calls, yes. Most agency owners skip pre-call research, fail to quantify ROI, and handle objections reactively. This pack systematizes those gaps into repeatable prompts you can use before, during, and after every call.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    What's the format? Is it a PDF?
+                    <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">Markdown file — perfectly printable as PDF from any markdown viewer. Copy-paste each prompt directly into your AI chat. No locked PDFs, no DRM. You own it forever.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    Can I use this with my agency team?
+                    <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">The Individual license covers you. For team use, grab the White-Label / Agency tier — 10+ units at $7 each, fully rebrandable. Your whole sales team gets the framework with your branding.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    What if it doesn't work for me?
+                    <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">We offer a 30-day "one deal" guarantee. If you run the prompts on at least 3 discovery calls and don't close a single deal, we'll refund you. No questions asked.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    Is the bundle really worth $58?
+                    <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">At standalone pricing: Client Discovery Pack ($14) + Cold Email Swipe File PRO ($19) + Agency Proposal Builder ($17) + Email Quality Analyzer ($12) = $62. The bundle at $37 saves you 40%. Plus you get all future products added free.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="buy">
+        <div class="email-section">
+            <h2>Get the Client Discovery Prompt Pack</h2>
+            <p>15 battle-tested prompts. D.I.S.C.O.V.E.R. framework. $14 one-time. Start closing more deals today.</p>
+            <div class="email-form">
+                <input type="email" placeholder="Enter your email for early access + free Phase 1 prompts...">
+                <button>Get Instant Access →</button>
+            </div>
+            <p style="margin-top:1.5rem; font-size:0.8rem; color:#666;">🔒 Your purchase is secure. 30-day money-back guarantee.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://tennie321.github.io/ai-revenue-toolkit/" target="_blank">AI Revenue Toolkit</a>
+            <a href="https://tennie321.github.io/cold-email-swipe-file-pro/" target="_blank">Cold Email Swipe File</a>
+            <a href="https://tennie321.github.io/agency-proposal-builder/" target="_blank">Agency Proposal Builder</a>
+            <a href="https://tennie321.github.io/email-quality-analyzer/" target="_blank">Email Analyzer</a>
+        </div>
+        <p>© 2026 AI Revenue Toolkit — Part of the Tennie321 Product Suite</p>
+    </footer>
+
+    <script>
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                q.parentElement.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
